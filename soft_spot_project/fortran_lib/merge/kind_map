@@ -1,0 +1,15 @@
+{'real': {'dbl': 'double',
+          'sgl': 'float', 
+          '4': 'float',
+          '8': 'double'
+          },
+
+  'integer' : {'': 'int',
+	          '8': 'long_long',
+              'lint': 'long_long' },
+
+'complex' : {'': 'complex_float',
+ 	          'dbl' : 'complex_double'}
+
+
+}
