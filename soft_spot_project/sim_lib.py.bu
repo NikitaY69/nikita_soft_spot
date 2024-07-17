@@ -8,16 +8,16 @@ class Kinds(f90wrap.runtime.FortranModule):
     Module kinds
     
     
-    Defined at src.f95 lines 2-38
+    Defined at src.f95 lines 1-25
     
     """
-    @f90wrap.runtime.register_class("const_vec")
+    @f90wrap.runtime.register_class("sim_lib.const_vec")
     class const_vec(f90wrap.runtime.FortranDerivedType):
         """
         Type(name=const_vec)
         
         
-        Defined at src.f95 lines 15-17
+        Defined at src.f95 lines 11-12
         
         """
         def __init__(self, handle=None):
@@ -25,7 +25,7 @@ class Kinds(f90wrap.runtime.FortranModule):
             self = Const_Vec()
             
             
-            Defined at src.f95 lines 15-17
+            Defined at src.f95 lines 11-12
             
             
             Returns
@@ -37,14 +37,15 @@ class Kinds(f90wrap.runtime.FortranModule):
             Automatically generated constructor for const_vec
             """
             f90wrap.runtime.FortranDerivedType.__init__(self)
-            self._handle = _sim_lib.f90wrap_const_vec_initialise()
+            result = _sim_lib.f90wrap_const_vec_initialise()
+            self._handle = result[0] if isinstance(result, tuple) else result
         
         def __del__(self):
             """
             Destructor for class Const_Vec
             
             
-            Defined at src.f95 lines 15-17
+            Defined at src.f95 lines 11-12
             
             Parameters
             ----------
@@ -63,7 +64,7 @@ class Kinds(f90wrap.runtime.FortranModule):
             Element c ftype=real(dbl) pytype=float
             
             
-            Defined at src.f95 line 16
+            Defined at src.f95 line 12
             
             """
             array_ndim, array_type, array_shape, array_handle = \
@@ -97,7 +98,7 @@ class Kinds(f90wrap.runtime.FortranModule):
         init_const_vec(self, n)
         
         
-        Defined at src.f95 lines 24-29
+        Defined at src.f95 lines 16-20
         
         Parameters
         ----------
@@ -113,7 +114,7 @@ class Kinds(f90wrap.runtime.FortranModule):
         destroy_const_vec(self)
         
         
-        Defined at src.f95 lines 31-37
+        Defined at src.f95 lines 22-24
         
         Parameters
         ----------
@@ -128,7 +129,7 @@ class Kinds(f90wrap.runtime.FortranModule):
         Element dbl ftype=integer pytype=int
         
         
-        Defined at src.f95 line 10
+        Defined at src.f95 line 8
         
         """
         return _sim_lib.f90wrap_kinds__get__dbl()
@@ -139,7 +140,7 @@ class Kinds(f90wrap.runtime.FortranModule):
         Element sgl ftype=integer pytype=int
         
         
-        Defined at src.f95 line 11
+        Defined at src.f95 line 9
         
         """
         return _sim_lib.f90wrap_kinds__get__sgl()
@@ -150,7 +151,7 @@ class Kinds(f90wrap.runtime.FortranModule):
         Element lint ftype=integer pytype=int
         
         
-        Defined at src.f95 line 13
+        Defined at src.f95 line 10
         
         """
         return _sim_lib.f90wrap_kinds__get__lint()
@@ -176,7 +177,7 @@ class System(f90wrap.runtime.FortranModule):
     Module system
     
     
-    Defined at src.f95 lines 40-154
+    Defined at src.f95 lines 27-104
     
     """
     @staticmethod
@@ -185,7 +186,7 @@ class System(f90wrap.runtime.FortranModule):
         init_system_arrays()
         
         
-        Defined at src.f95 lines 92-128
+        Defined at src.f95 lines 64-86
         
         
         """
@@ -197,7 +198,7 @@ class System(f90wrap.runtime.FortranModule):
         print_system_info()
         
         
-        Defined at src.f95 lines 130-140
+        Defined at src.f95 lines 88-95
         
         
         """
@@ -209,7 +210,7 @@ class System(f90wrap.runtime.FortranModule):
         switch_diameter(i, j)
         
         
-        Defined at src.f95 lines 142-152
+        Defined at src.f95 lines 97-103
         
         Parameters
         ----------
@@ -225,7 +226,7 @@ class System(f90wrap.runtime.FortranModule):
         Element nthreads ftype=integer pytype=int
         
         
-        Defined at src.f95 line 52
+        Defined at src.f95 line 37
         
         """
         return _sim_lib.f90wrap_system__get__nthreads()
@@ -240,7 +241,7 @@ class System(f90wrap.runtime.FortranModule):
         Element ndim ftype=integer pytype=int
         
         
-        Defined at src.f95 line 55
+        Defined at src.f95 line 39
         
         """
         return _sim_lib.f90wrap_system__get__ndim()
@@ -255,7 +256,7 @@ class System(f90wrap.runtime.FortranModule):
         Element npart ftype=integer pytype=int
         
         
-        Defined at src.f95 line 56
+        Defined at src.f95 line 40
         
         """
         return _sim_lib.f90wrap_system__get__npart()
@@ -270,7 +271,7 @@ class System(f90wrap.runtime.FortranModule):
         Element ntypes ftype=integer pytype=int
         
         
-        Defined at src.f95 line 57
+        Defined at src.f95 line 41
         
         """
         return _sim_lib.f90wrap_system__get__ntypes()
@@ -285,7 +286,7 @@ class System(f90wrap.runtime.FortranModule):
         Element inv_ndim ftype=real(kind=dbl) pytype=float
         
         
-        Defined at src.f95 line 58
+        Defined at src.f95 line 42
         
         """
         return _sim_lib.f90wrap_system__get__inv_ndim()
@@ -300,7 +301,7 @@ class System(f90wrap.runtime.FortranModule):
         Element real_npart ftype=real(kind=dbl) pytype=float
         
         
-        Defined at src.f95 line 59
+        Defined at src.f95 line 43
         
         """
         return _sim_lib.f90wrap_system__get__real_npart()
@@ -315,7 +316,7 @@ class System(f90wrap.runtime.FortranModule):
         Element box_volume ftype=real(kind=dbl) pytype=float
         
         
-        Defined at src.f95 line 62
+        Defined at src.f95 line 45
         
         """
         return _sim_lib.f90wrap_system__get__box_volume()
@@ -330,7 +331,7 @@ class System(f90wrap.runtime.FortranModule):
         Element boxl ftype=real(kind=dbl) pytype=float
         
         
-        Defined at src.f95 line 63
+        Defined at src.f95 line 46
         
         """
         array_ndim, array_type, array_shape, array_handle = \
@@ -354,7 +355,7 @@ class System(f90wrap.runtime.FortranModule):
         Element boxl2 ftype=real(kind=dbl) pytype=float
         
         
-        Defined at src.f95 line 63
+        Defined at src.f95 line 46
         
         """
         array_ndim, array_type, array_shape, array_handle = \
@@ -378,7 +379,7 @@ class System(f90wrap.runtime.FortranModule):
         Element box_strain ftype=real(kind=dbl) pytype=float
         
         
-        Defined at src.f95 line 64
+        Defined at src.f95 line 47
         
         """
         return _sim_lib.f90wrap_system__get__box_strain()
@@ -393,7 +394,7 @@ class System(f90wrap.runtime.FortranModule):
         Element box_delrx ftype=real(kind=dbl) pytype=float
         
         
-        Defined at src.f95 line 64
+        Defined at src.f95 line 47
         
         """
         return _sim_lib.f90wrap_system__get__box_delrx()
@@ -408,7 +409,7 @@ class System(f90wrap.runtime.FortranModule):
         Element box_rho ftype=real(kind=dbl) pytype=float
         
         
-        Defined at src.f95 line 65
+        Defined at src.f95 line 48
         
         """
         return _sim_lib.f90wrap_system__get__box_rho()
@@ -423,7 +424,7 @@ class System(f90wrap.runtime.FortranModule):
         Element ptypes ftype=integer pytype=int
         
         
-        Defined at src.f95 line 69
+        Defined at src.f95 line 50
         
         """
         array_ndim, array_type, array_shape, array_handle = \
@@ -447,7 +448,7 @@ class System(f90wrap.runtime.FortranModule):
         Element mtypes ftype=integer pytype=int
         
         
-        Defined at src.f95 line 70
+        Defined at src.f95 line 51
         
         """
         array_ndim, array_type, array_shape, array_handle = \
@@ -471,7 +472,7 @@ class System(f90wrap.runtime.FortranModule):
         Element mass ftype=real(kind=dbl) pytype=float
         
         
-        Defined at src.f95 line 71
+        Defined at src.f95 line 52
         
         """
         array_ndim, array_type, array_shape, array_handle = \
@@ -495,7 +496,7 @@ class System(f90wrap.runtime.FortranModule):
         Element d ftype=real(kind=dbl) pytype=float
         
         
-        Defined at src.f95 line 72
+        Defined at src.f95 line 53
         
         """
         array_ndim, array_type, array_shape, array_handle = \
@@ -519,7 +520,7 @@ class System(f90wrap.runtime.FortranModule):
         Element r ftype=real(kind=dbl) pytype=float
         
         
-        Defined at src.f95 line 73
+        Defined at src.f95 line 54
         
         """
         array_ndim, array_type, array_shape, array_handle = \
@@ -543,7 +544,7 @@ class System(f90wrap.runtime.FortranModule):
         Element vel ftype=real(kind=dbl) pytype=float
         
         
-        Defined at src.f95 line 74
+        Defined at src.f95 line 55
         
         """
         array_ndim, array_type, array_shape, array_handle = \
@@ -567,7 +568,7 @@ class System(f90wrap.runtime.FortranModule):
         Element f ftype=real(kind=dbl) pytype=float
         
         
-        Defined at src.f95 line 75
+        Defined at src.f95 line 56
         
         """
         array_ndim, array_type, array_shape, array_handle = \
@@ -591,7 +592,7 @@ class System(f90wrap.runtime.FortranModule):
         Element s ftype=real(kind=dbl) pytype=float
         
         
-        Defined at src.f95 line 76
+        Defined at src.f95 line 57
         
         """
         array_ndim, array_type, array_shape, array_handle = \
@@ -615,7 +616,7 @@ class System(f90wrap.runtime.FortranModule):
         Element typical_grad ftype=real(kind=dbl) pytype=float
         
         
-        Defined at src.f95 line 77
+        Defined at src.f95 line 58
         
         """
         return _sim_lib.f90wrap_system__get__typical_grad()
@@ -630,7 +631,7 @@ class System(f90wrap.runtime.FortranModule):
         Element grad_scale ftype=real(kind=dbl) pytype=float
         
         
-        Defined at src.f95 line 77
+        Defined at src.f95 line 58
         
         """
         return _sim_lib.f90wrap_system__get__grad_scale()
@@ -645,7 +646,7 @@ class System(f90wrap.runtime.FortranModule):
         Element thermo_temp ftype=real(kind=dbl) pytype=float
         
         
-        Defined at src.f95 line 81
+        Defined at src.f95 line 60
         
         """
         return _sim_lib.f90wrap_system__get__thermo_temp()
@@ -660,7 +661,7 @@ class System(f90wrap.runtime.FortranModule):
         Element thermo_pot ftype=real(kind=dbl) pytype=float
         
         
-        Defined at src.f95 line 82
+        Defined at src.f95 line 61
         
         """
         return _sim_lib.f90wrap_system__get__thermo_pot()
@@ -675,7 +676,7 @@ class System(f90wrap.runtime.FortranModule):
         Element thermo_pre ftype=real(kind=dbl) pytype=float
         
         
-        Defined at src.f95 line 82
+        Defined at src.f95 line 61
         
         """
         return _sim_lib.f90wrap_system__get__thermo_pre()
@@ -690,7 +691,7 @@ class System(f90wrap.runtime.FortranModule):
         Element thermo_sigma ftype=real(kind=dbl) pytype=float
         
         
-        Defined at src.f95 line 82
+        Defined at src.f95 line 61
         
         """
         return _sim_lib.f90wrap_system__get__thermo_sigma()
@@ -766,16 +767,16 @@ class Cell(f90wrap.runtime.FortranModule):
     Module cell
     
     
-    Defined at src.f95 lines 156-660
+    Defined at src.f95 lines 106-430
     
     """
-    @f90wrap.runtime.register_class("cell_info")
+    @f90wrap.runtime.register_class("sim_lib.cell_info")
     class cell_info(f90wrap.runtime.FortranDerivedType):
         """
         Type(name=cell_info)
         
         
-        Defined at src.f95 lines 166-174
+        Defined at src.f95 lines 115-122
         
         """
         def __init__(self, handle=None):
@@ -783,7 +784,7 @@ class Cell(f90wrap.runtime.FortranModule):
             self = Cell_Info()
             
             
-            Defined at src.f95 lines 166-174
+            Defined at src.f95 lines 115-122
             
             
             Returns
@@ -795,14 +796,15 @@ class Cell(f90wrap.runtime.FortranModule):
             Automatically generated constructor for cell_info
             """
             f90wrap.runtime.FortranDerivedType.__init__(self)
-            self._handle = _sim_lib.f90wrap_cell_info_initialise()
+            result = _sim_lib.f90wrap_cell_info_initialise()
+            self._handle = result[0] if isinstance(result, tuple) else result
         
         def __del__(self):
             """
             Destructor for class Cell_Info
             
             
-            Defined at src.f95 lines 166-174
+            Defined at src.f95 lines 115-122
             
             Parameters
             ----------
@@ -821,7 +823,7 @@ class Cell(f90wrap.runtime.FortranModule):
             Element nt ftype=integer pytype=int
             
             
-            Defined at src.f95 line 167
+            Defined at src.f95 line 116
             
             """
             return _sim_lib.f90wrap_cell_info__get__nt(self._handle)
@@ -836,7 +838,7 @@ class Cell(f90wrap.runtime.FortranModule):
             Element nc ftype=integer pytype=int
             
             
-            Defined at src.f95 line 168
+            Defined at src.f95 line 117
             
             """
             return _sim_lib.f90wrap_cell_info__get__nc(self._handle)
@@ -851,7 +853,7 @@ class Cell(f90wrap.runtime.FortranModule):
             Element n_xyz ftype=integer pytype=int
             
             
-            Defined at src.f95 line 169
+            Defined at src.f95 line 118
             
             """
             array_ndim, array_type, array_shape, array_handle = \
@@ -875,7 +877,7 @@ class Cell(f90wrap.runtime.FortranModule):
             Element diam ftype=real(kind=dbl) pytype=float
             
             
-            Defined at src.f95 line 170
+            Defined at src.f95 line 119
             
             """
             array_ndim, array_type, array_shape, array_handle = \
@@ -899,7 +901,7 @@ class Cell(f90wrap.runtime.FortranModule):
             Element ll_a ftype=integer pytype=int
             
             
-            Defined at src.f95 line 171
+            Defined at src.f95 line 120
             
             """
             array_ndim, array_type, array_shape, array_handle = \
@@ -923,7 +925,7 @@ class Cell(f90wrap.runtime.FortranModule):
             Element hoc_a ftype=integer pytype=int
             
             
-            Defined at src.f95 line 171
+            Defined at src.f95 line 120
             
             """
             array_ndim, array_type, array_shape, array_handle = \
@@ -947,7 +949,7 @@ class Cell(f90wrap.runtime.FortranModule):
             Element list_a ftype=integer pytype=int
             
             
-            Defined at src.f95 line 172
+            Defined at src.f95 line 121
             
             """
             array_ndim, array_type, array_shape, array_handle = \
@@ -971,7 +973,7 @@ class Cell(f90wrap.runtime.FortranModule):
             Element maps ftype=integer pytype=int
             
             
-            Defined at src.f95 line 173
+            Defined at src.f95 line 122
             
             """
             array_ndim, array_type, array_shape, array_handle = \
@@ -1019,7 +1021,7 @@ class Cell(f90wrap.runtime.FortranModule):
         init_cell()
         
         
-        Defined at src.f95 lines 188-254
+        Defined at src.f95 lines 129-174
         
         
         """
@@ -1031,7 +1033,7 @@ class Cell(f90wrap.runtime.FortranModule):
         icell = get_2d_icell(idx, idy, n_xyz)
         
         
-        Defined at src.f95 lines 256-273
+        Defined at src.f95 lines 176-186
         
         Parameters
         ----------
@@ -1053,7 +1055,7 @@ class Cell(f90wrap.runtime.FortranModule):
         construct_2dcell_map()
         
         
-        Defined at src.f95 lines 275-311
+        Defined at src.f95 lines 188-209
         
         
         """
@@ -1065,7 +1067,7 @@ class Cell(f90wrap.runtime.FortranModule):
         update_shear_2dcell_map()
         
         
-        Defined at src.f95 lines 313-370
+        Defined at src.f95 lines 211-242
         
         
         """
@@ -1077,7 +1079,7 @@ class Cell(f90wrap.runtime.FortranModule):
         icell = get_3d_icell(idx, idy, idz, n_xyz)
         
         
-        Defined at src.f95 lines 372-392
+        Defined at src.f95 lines 244-255
         
         Parameters
         ----------
@@ -1100,7 +1102,7 @@ class Cell(f90wrap.runtime.FortranModule):
         construct_3dcell_map()
         
         
-        Defined at src.f95 lines 394-517
+        Defined at src.f95 lines 257-348
         
         
         """
@@ -1112,7 +1114,7 @@ class Cell(f90wrap.runtime.FortranModule):
         update_shear_3dcell_map()
         
         
-        Defined at src.f95 lines 519-641
+        Defined at src.f95 lines 350-417
         
         
         """
@@ -1124,7 +1126,7 @@ class Cell(f90wrap.runtime.FortranModule):
         icel = get_particle_cell(pos)
         
         
-        Defined at src.f95 lines 643-659
+        Defined at src.f95 lines 419-429
         
         Parameters
         ----------
@@ -1144,7 +1146,7 @@ class Cell(f90wrap.runtime.FortranModule):
         Element frc_cell_rc_min ftype=real(kind=dbl) pytype=float
         
         
-        Defined at src.f95 line 179
+        Defined at src.f95 line 126
         
         """
         return _sim_lib.f90wrap_cell__get__frc_cell_rc_min()
@@ -1170,7 +1172,7 @@ class Sim_Tools(f90wrap.runtime.FortranModule):
     Module sim_tools
     
     
-    Defined at src.f95 lines 662-743
+    Defined at src.f95 lines 432-483
     
     """
     @staticmethod
@@ -1179,7 +1181,7 @@ class Sim_Tools(f90wrap.runtime.FortranModule):
         apply_lepbc(pos, box2, box, drx_shear)
         
         
-        Defined at src.f95 lines 679-712
+        Defined at src.f95 lines 444-465
         
         Parameters
         ----------
@@ -1197,7 +1199,7 @@ class Sim_Tools(f90wrap.runtime.FortranModule):
         put_back_in_box(pos, box)
         
         
-        Defined at src.f95 lines 714-741
+        Defined at src.f95 lines 467-482
         
         Parameters
         ----------
@@ -1217,7 +1219,7 @@ class Potentials(f90wrap.runtime.FortranModule):
     Module potentials
     
     
-    Defined at src.f95 lines 745-986
+    Defined at src.f95 lines 485-632
     
     """
     @staticmethod
@@ -1226,7 +1228,7 @@ class Potentials(f90wrap.runtime.FortranModule):
         init_poly_force_field(type_bn, arg)
         
         
-        Defined at src.f95 lines 802-853
+        Defined at src.f95 lines 523-554
         
         Parameters
         ----------
@@ -1242,7 +1244,7 @@ class Potentials(f90wrap.runtime.FortranModule):
         dij2 = dij_swap_ipl(di, dj, arg)
         
         
-        Defined at src.f95 lines 861-878
+        Defined at src.f95 lines 559-569
         
         Parameters
         ----------
@@ -1264,7 +1266,7 @@ class Potentials(f90wrap.runtime.FortranModule):
         rc2 = rcut_swap_ipl(dij2, arg)
         
         
-        Defined at src.f95 lines 880-896
+        Defined at src.f95 lines 571-580
         
         Parameters
         ----------
@@ -1285,7 +1287,7 @@ class Potentials(f90wrap.runtime.FortranModule):
         pot = pot_swap_ipl(r2, dij2, arg)
         
         
-        Defined at src.f95 lines 898-919
+        Defined at src.f95 lines 582-594
         
         Parameters
         ----------
@@ -1307,7 +1309,7 @@ class Potentials(f90wrap.runtime.FortranModule):
         phir = phir_swap_ipl(r2, dij2, arg)
         
         
-        Defined at src.f95 lines 921-943
+        Defined at src.f95 lines 596-609
         
         Parameters
         ----------
@@ -1329,7 +1331,7 @@ class Potentials(f90wrap.runtime.FortranModule):
         full_swap_ipl(r2, dij2, arg, arg_out)
         
         
-        Defined at src.f95 lines 945-972
+        Defined at src.f95 lines 611-628
         
         Parameters
         ----------
@@ -1352,7 +1354,7 @@ class Pairwise(f90wrap.runtime.FortranModule):
     Module pairwise
     
     
-    Defined at src.f95 lines 988-1311
+    Defined at src.f95 lines 634-850
     
     """
     @staticmethod
@@ -1361,7 +1363,7 @@ class Pairwise(f90wrap.runtime.FortranModule):
         init_pairwise_arrays()
         
         
-        Defined at src.f95 lines 1017-1039
+        Defined at src.f95 lines 654-667
         
         
         """
@@ -1373,7 +1375,7 @@ class Pairwise(f90wrap.runtime.FortranModule):
         create_chain_list()
         
         
-        Defined at src.f95 lines 1041-1070
+        Defined at src.f95 lines 669-686
         
         
         """
@@ -1385,7 +1387,7 @@ class Pairwise(f90wrap.runtime.FortranModule):
         update_chain_list(id, old_cell, new_cell)
         
         
-        Defined at src.f95 lines 1072-1108
+        Defined at src.f95 lines 688-714
         
         Parameters
         ----------
@@ -1402,7 +1404,7 @@ class Pairwise(f90wrap.runtime.FortranModule):
         compute_poly_everything()
         
         
-        Defined at src.f95 lines 1110-1227
+        Defined at src.f95 lines 716-789
         
         
         """
@@ -1414,7 +1416,7 @@ class Pairwise(f90wrap.runtime.FortranModule):
         compute_hessian(hessian)
         
         
-        Defined at src.f95 lines 1229-1294
+        Defined at src.f95 lines 791-839
         
         Parameters
         ----------
@@ -1429,7 +1431,7 @@ class Pairwise(f90wrap.runtime.FortranModule):
         d = kron_delta(a, b)
         
         
-        Defined at src.f95 lines 1296-1308
+        Defined at src.f95 lines 841-849
         
         Parameters
         ----------
@@ -1450,7 +1452,7 @@ class Pairwise(f90wrap.runtime.FortranModule):
         Element pair_ncontacts ftype=integer pytype=int
         
         
-        Defined at src.f95 line 1004
+        Defined at src.f95 line 645
         
         """
         return _sim_lib.f90wrap_pairwise__get__pair_ncontacts()
@@ -1461,7 +1463,7 @@ class Pairwise(f90wrap.runtime.FortranModule):
         Element pair_count ftype=integer pytype=int
         
         
-        Defined at src.f95 line 1005
+        Defined at src.f95 line 646
         
         """
         return _sim_lib.f90wrap_pairwise__get__pair_count()
@@ -1476,7 +1478,7 @@ class Pairwise(f90wrap.runtime.FortranModule):
         Element pair_lookupbond ftype=integer pytype=int
         
         
-        Defined at src.f95 line 1006
+        Defined at src.f95 line 647
         
         """
         array_ndim, array_type, array_shape, array_handle = \
@@ -1500,7 +1502,7 @@ class Pairwise(f90wrap.runtime.FortranModule):
         Element pair_first ftype=real(kind=dbl) pytype=float
         
         
-        Defined at src.f95 line 1007
+        Defined at src.f95 line 648
         
         """
         array_ndim, array_type, array_shape, array_handle = \
@@ -1524,7 +1526,7 @@ class Pairwise(f90wrap.runtime.FortranModule):
         Element pair_second ftype=real(kind=dbl) pytype=float
         
         
-        Defined at src.f95 line 1007
+        Defined at src.f95 line 648
         
         """
         array_ndim, array_type, array_shape, array_handle = \
@@ -1548,7 +1550,7 @@ class Pairwise(f90wrap.runtime.FortranModule):
         Element pair_third ftype=real(kind=dbl) pytype=float
         
         
-        Defined at src.f95 line 1007
+        Defined at src.f95 line 648
         
         """
         array_ndim, array_type, array_shape, array_handle = \
@@ -1572,7 +1574,7 @@ class Pairwise(f90wrap.runtime.FortranModule):
         Element pair_fourth ftype=real(kind=dbl) pytype=float
         
         
-        Defined at src.f95 line 1007
+        Defined at src.f95 line 648
         
         """
         array_ndim, array_type, array_shape, array_handle = \
@@ -1596,7 +1598,7 @@ class Pairwise(f90wrap.runtime.FortranModule):
         Element pair_rij ftype=real(kind=dbl) pytype=float
         
         
-        Defined at src.f95 line 1008
+        Defined at src.f95 line 649
         
         """
         array_ndim, array_type, array_shape, array_handle = \
@@ -1620,7 +1622,7 @@ class Pairwise(f90wrap.runtime.FortranModule):
         Element typical_contact_force ftype=real(kind=dbl) pytype=float
         
         
-        Defined at src.f95 line 1009
+        Defined at src.f95 line 650
         
         """
         return _sim_lib.f90wrap_pairwise__get__typical_contact_force()
@@ -1635,7 +1637,7 @@ class Pairwise(f90wrap.runtime.FortranModule):
         Element pair_list_ni ftype=integer pytype=int
         
         
-        Defined at src.f95 line 1011
+        Defined at src.f95 line 651
         
         """
         array_ndim, array_type, array_shape, array_handle = \
@@ -1659,7 +1661,7 @@ class Pairwise(f90wrap.runtime.FortranModule):
         Element pair_list_ij ftype=integer pytype=int
         
         
-        Defined at src.f95 line 1012
+        Defined at src.f95 line 652
         
         """
         array_ndim, array_type, array_shape, array_handle = \

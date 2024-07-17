@@ -101,7 +101,7 @@ hessian = get_sparse_hessian()
 # partial diagonalization
 n_modes = 50
 n_modes += sim.system.ndim # add d to take into account the translational modes
-vals, vecs = eigs(hessian, k=n_modes, which='LM', sigma=0, tol=0)
+vals, vecs = eigs(hessian, k=n_modes, which='LM', sigma=0, tol=1e-6)
 # Throw away infinitesimal imaginary part and sort.
 vals  = np.real(vals)
 vecs = np.real(vecs)
@@ -126,8 +126,8 @@ softspot = SoftSpot(ndim=sim.system.ndim, npart=sim.system.npart, hessian=hessia
 
 
 
-plt.rcParams['text.usetex'] = True
-plt.rcParams['text.latex.preamble'] = r"\usepackage{cmbright} \usepackage{amsmath}"
+# plt.rcParams['text.usetex'] = True
+# plt.rcParams['text.latex.preamble'] = r"\usepackage{cmbright} \usepackage{amsmath}"
 plt.rcParams['axes.linewidth'] = 0.5 # set the value globally
 
 fig = plt.gcf()
@@ -217,13 +217,13 @@ for k,mode in enumerate(pi_modes[::-1]): # display the softest at the end
 
 # participation versus mode frequency
 ax4.plot(np.sqrt(psi_kappa),ep_psi,'k.',label='harmonic')
-ax4.plot(np.sqrt(pi_kappa),ep_pi,'ro',markerfacecolor='none',label='psuedo harmonic')
-
+ax4.plot(np.sqrt(pi_kappa),ep_pi,'ro',markerfacecolor='none',label='pseudo harmonic')
+ax4.legend()
 
 
 
 plt.tight_layout(pad=0.2)
-plt.show()
+plt.savefig('mode_analysis.jpg', dpi=500)
 
 
 
