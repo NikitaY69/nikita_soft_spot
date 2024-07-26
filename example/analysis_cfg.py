@@ -6,7 +6,8 @@ from scipy.stats import rankdata
 from scipy.linalg.lapack import dsyevd
 from scipy.sparse.linalg import eigs
 from optparse import OptionParser
-
+from matplotlib.colors import Normalize
+from matplotlib.cm import ScalarMappable
 
 import soft_spot_project.sim_lib as sim
 from soft_spot_project.init_model import InitializeModel
@@ -31,7 +32,8 @@ def read_andrea_cfg(file_name):
 	diameter = data[:,0]
 	pos = data[:,1:]
 	pos += L/2.
-
+	print(diameter.shape)
+	print(pos.shape)
 	return L,diameter,pos
 
 
@@ -133,7 +135,7 @@ plt.rcParams['axes.linewidth'] = 0.5 # set the value globally
 fig = plt.gcf()
 fig.set_facecolor('white') 
 fig.set_size_inches(10,7)
-
+cmap = plt.get_cmap('jet_r')
 
 ax1 = plt.subplot(2,3,1,aspect='equal')
 plt.title('snapshot',fontsize=9)
@@ -197,7 +199,6 @@ for k in range(2,len(vals)):
 		count_pi+=1
 		print('#',k,'pi count ',count_pi,'kappa(pi)',kappa_pi)
 
-
 pi_modes  = np.array(pi_modes)
 pi_kappa  = np.array(pi_kappa)
 psi_kappa = vals[2:]
@@ -209,15 +210,20 @@ idx = pi_kappa.argsort()
 pi_modes = pi_modes[idx]
 pi_kappa = pi_kappa[idx]
 ep_pi = ep_pi[idx]
+norm = Normalize(vmin=min(np.sqrt(pi_kappa)), vmax=max(np.sqrt(pi_kappa)))
+sm = ScalarMappable(norm=norm, cmap=cmap)
 
-
-for k,mode in enumerate(pi_modes[::-1]): # display the softest at the end
-	render_field(ax6,pos,mode,color=cm.magma(1.*k/count_pi),scale=0.02, remove_fraction=0.95)
+for k,mode in enumerate(pi_modes): # display the softest at the end
+	render_field(ax6,pos,mode,color=cmap(norm(np.sqrt(pi_kappa[k]))), scale=0.045, remove_fraction=0.95, \
+		   		 options={'width':0.005, 'headwidth': 3.5, 'headlength':2.5, 'headaxislength':2.5}, \
+				 sm=sm)
 
 
 # participation versus mode frequency
 ax4.plot(np.sqrt(psi_kappa),ep_psi,'k.',label='harmonic')
-ax4.plot(np.sqrt(pi_kappa),ep_pi,'ro',markerfacecolor='none',label='pseudo harmonic')
+ax4.scatter(np.sqrt(pi_kappa),ep_pi, marker='o', \
+		 color=[cmap(norm(np.sqrt(kappa))) for kappa in pi_kappa], \
+		 edgecolors='k', label='pseudo harmonic')
 ax4.legend()
 
 

@@ -51,11 +51,11 @@ def render_snapshot(ax, r, d, box, color='gray',edgecolor='black', alpha=1., sho
         cbar = plt.colorbar(p, ax=ax, cax=cax)
         cbar.ax.tick_params(labelsize=7)
 
-    return None
+    return patches
 
 
 
-def render_field(ax, r, u, color='k', scale=1., tick_labels=False, labelsize=5, remove_fraction=0, options={}):
+def render_field(r, u, remove_fraction=0):
     if u.ndim == 1:
         u = np.reshape(u, r.shape)
 
@@ -68,25 +68,28 @@ def render_field(ax, r, u, color='k', scale=1., tick_labels=False, labelsize=5, 
         idx = idx[:int((1-remove_fraction)*npart)]
         r = r[idx, :]
         u = u[idx, :]
+    
+    return r, u
 
-    ax.quiver(r[:, 0], r[:, 1], u[:, 0], u[:, 1], angles='xy',
-              scale_units='xy', scale=scale, color=color,headwidth=6, **options)
-    if tick_labels:
-        L = np.max(r)
-        ax.margins(x=0, y=0)
-        num_ticks = 4
-        locs = np.linspace(0, L, num_ticks)
-        ax.set_xticks(locs)
-        ax.set_yticks(locs)
-        fmt = "%d"
-        ax.xaxis.set_major_formatter(FormatStrFormatter(fmt))
-        ax.yaxis.set_major_formatter(FormatStrFormatter(fmt))
-        ax.tick_params(labelsize=labelsize)
-    else:
-        ax.margins(x=0, y=0)
-        ax.axis('off')
+    # pos = np.vstack((r[:, 0], r[:, 1])).T
+    # quiv.set_offsets(pos)
+    # quiv.set_UVC(u[:, 0], u[:, 1])
+    # quiv.set_color(color)
+        
+    # if tick_labels:
+    #     L = np.max(r)
+    #     ax.margins(x=0, y=0)
+    #     num_ticks = 4
+    #     locs = np.linspace(0, L, num_ticks)
+    #     ax.set_xticks(locs)
+    #     ax.set_yticks(locs)
+    #     fmt = "%d"
+    #     ax.xaxis.set_major_formatter(FormatStrFormatter(fmt))
+    #     ax.yaxis.set_major_formatter(FormatStrFormatter(fmt))
+    #     ax.tick_params(labelsize=labelsize)
+    # else:
+    #     ax.margins(x=0, y=0)
+    #     ax.axis('off')
 
-    ax.set_aspect('equal')
-
-
-
+    # ax.set_aspect('equal')
+    return None
